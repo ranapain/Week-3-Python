@@ -1,0 +1,35 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class LinkedList:
+    def __init__(self):
+        self.head=None
+
+    def append(self,data):
+        n=Node(data)
+        if not self.head:
+            self.head=n; return
+        t=self.head
+        while t.next: t=t.next
+        t.next=n
+
+    def insert_middle(self,data):
+        if not self.head: self.head=Node(data); return
+        slow,fast=self.head,self.head
+        while fast.next and fast.next.next:
+            slow=slow.next; fast=fast.next.next
+        n=Node(data); n.next=slow.next; slow.next=n
+
+    def show(self):
+        t=self.head
+        while t: print(t.data,end=" -> "); t=t.next
+        print("None")
+
+# Example
+ll=LinkedList()
+for i in [10,20,30,40]: ll.append(i)
+ll.show()
+ll.insert_middle(25)
+ll.show()
