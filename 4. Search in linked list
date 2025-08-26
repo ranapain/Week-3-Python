@@ -1,0 +1,30 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class LinkedList:
+    def __init__(self):
+        self.head=None
+
+    def append(self,data):
+        n=Node(data)
+        if not self.head: self.head=n; return
+        t=self.head
+        while t.next: t=t.next
+        t.next=n
+
+    def search(self,key):
+        t=self.head
+        pos=1
+        while t:
+            if t.data==key:
+                return f"Found {key} at position {pos}"
+            t=t.next; pos+=1
+        return f"{key} not found"
+
+# Example
+ll=LinkedList()
+for i in [10,20,30,40]: ll.append(i)
+print(ll.search(30))
+print(ll.search(50))
