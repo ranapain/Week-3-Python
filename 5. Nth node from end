@@ -1,0 +1,36 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+def insert_end(head, data):
+    new_node = Node(data)
+    if head is None:
+        return new_node
+    temp = head
+    while temp.next:
+        temp = temp.next
+    temp.next = new_node
+    return head
+def nth_from_end(head, n):
+    length = 0
+    temp = head
+    while temp:
+        length += 1
+        temp = temp.next
+    if n > length:
+        print(f"List has fewer than {n} nodes")
+        return
+    temp = head
+    for _ in range(length - n):
+        temp = temp.next
+
+    print(f"The {n}th node from the end is:", temp.data)
+head = None
+head = insert_end(head, 10)
+head = insert_end(head, 20)
+head = insert_end(head, 30)
+head = insert_end(head, 40)
+head = insert_end(head, 50)
+
+n = 2
+nth_from_end(head, n)
