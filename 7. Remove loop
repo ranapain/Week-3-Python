@@ -1,0 +1,17 @@
+def remove_loop(head):
+    slow = fast = head
+    loop_exists = False
+    while slow and fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            loop_exists = True
+            break
+
+    if not loop_exists:
+        return  
+    slow = head
+    while slow.next != fast.next:
+        slow = slow.next
+        fast = fast.next
+    fast.next = None
